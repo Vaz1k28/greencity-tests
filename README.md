@@ -5,5 +5,5 @@
 
  **Тестуєма сторінка:** [GreenCity Events](https://www.greencity.cx.ua/#/greenCity/events)
 
-## 👤 Автор
+## Автор
 Данік Едуард
