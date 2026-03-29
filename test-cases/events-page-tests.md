@@ -4,7 +4,6 @@
 **Preconditions:**
 1. Користувач відкрив сторінку [Events](https://www.greencity.cx.ua/#/greenCity/events).
 2. На сторінці відображається 2 кнопки (Grid, List).
-<img width="1366" height="288" alt="изображение" src="https://github.com/user-attachments/assets/215422a2-7e79-4f4c-8e8f-86bfc5b07b65" />
 
 | Step | Action | Data | Expected Result |
 |:----:|:------:|:----:|:---------------:|
@@ -17,8 +16,6 @@
 **Title:** Перевірка виклику вікна авторизації при спробі приєднатися до події неавторизованим користувачем
 
 **Preconditions:** Користувач НЕ увійшов у систему (Sign in).
-
-<img width="1352" height="871" alt="изображение" src="https://github.com/user-attachments/assets/7fe85dd7-9f38-45d1-ab26-cf5137bb5172" />
 
 ---
 
@@ -33,7 +30,6 @@
 **Title:** Перевірка роботи фільтра "Date range" для пошуку подій у майбутньому
 
 **Preconditions:** На сторінці є події з різними датами (наприклад, травень 2026).
-<img width="1328" height="246" alt="изображение" src="https://github.com/user-attachments/assets/a83e03fe-bef4-4173-a296-6a830b794318" />
 ---
 
 | Step | Action | Data | Expected Result |
