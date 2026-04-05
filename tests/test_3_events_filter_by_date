@@ -1,0 +1,30 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+BASE_URL = "https://www.greencity.cx.ua/#/greenCity/events"
+
+driver = webdriver.Firefox()
+driver.get(BASE_URL)
+wait = WebDriverWait(driver, 10)
+
+calendar = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='mat-mdc-select-arrow-wrapper']//*[local-name()='svg']")))
+bcalendarutton = driver.find_element(By.XPATH, "//div[@class='mat-mdc-select-arrow-wrapper']//*[local-name()='svg']")
+calendar.click()
+
+start_day = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")))
+start_day = driver.find_element(By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")
+start_day.click()
+
+end_day = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")))
+end_day = driver.find_element(By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 28 ']")
+end_day.click()
+
+event = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='image-container']")))
+event = driver.find_element(By.XPATH, "//div[@class='image-container']")
+assert event.is_displayed()
+
+print("✅ ТЕСТ УСПІШНИЙ: Календарний фільт праціє")
+
+driver.quit()
