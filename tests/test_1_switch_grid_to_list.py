@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 BASE_URL = "https://www.greencity.cx.ua/#/greenCity/events"
@@ -9,7 +10,7 @@ driver = webdriver.Firefox()
 driver.get(BASE_URL)
 wait = WebDriverWait(driver, 10)
 
-
+button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='list']")))
 button = driver.find_element(By.XPATH, "//button[@class='list']")
 button.click()
 wait.until(lambda d: button.get_attribute("aria-pressed") == "true")
