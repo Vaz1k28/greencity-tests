@@ -1,31 +1,22 @@
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from pages.events_page import EventsPage
 
-BASE_URL = "https://www.greencity.cx.ua/#/greenCity/events"
 
-driver = webdriver.Firefox()
-driver.get(BASE_URL)
-wait = WebDriverWait(driver, 10)
+class TestJoinEvent(unittest.TestCase):
 
-calendar = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='mat-mdc-select-arrow-wrapper']//*[local-name()='svg']")))
-bcalendarutton = driver.find_element(By.XPATH, "//div[@class='mat-mdc-select-arrow-wrapper']//*[local-name()='svg']")
-calendar.click()
+    def test_join_event(self):
+        driver = webdriver.Firefox()
+        driver.maximize_window()
 
-start_day = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")))
-start_day = driver.find_element(By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")
-start_day.click()
+        page = EventsPage(driver)
+        page.open()
 
-end_day = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 1 ']")))
-end_day = driver.find_element(By.XPATH, "//span[contains(@class, 'mat-calendar-body-cell-content') and text()=' 28 ']")
-end_day.click()
+        page.click_join_event()
+        assert page.is_sign_in_visible()
 
-event = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='image-container']")))
-event = driver.find_element(By.XPATH, "//div[@class='image-container']")
-assert event.is_displayed()
+        print("✅ Логін-вікно з'явилось")
 
-print("✅ ТЕСТ УСПІШНИЙ: Календарний фільт праціє")
-
-driver.quit()
+if __name__ == "__main__":
+    import unittest
+    unittest.main()

@@ -1,32 +1,23 @@
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from pages.events_page import EventsPage
 
 
-BASE_URL = "https://www.greencity.cx.ua/#/greenCity/events"
+class TestViewToggle(unittest.TestCase):
 
-driver = webdriver.Firefox()
-driver.get(BASE_URL)
-wait = WebDriverWait(driver, 10)
+    def test_switch_views(self):
 
-button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='list']")))
-button = driver.find_element(By.XPATH, "//button[@class='list']")
-button.click()
-wait.until(lambda d: button.get_attribute("aria-pressed") == "true")
+        page = EventsPage(driver)
+        page.open()
 
-verification1 = button.get_attribute("aria-pressed")
-assert verification1 == "true", f"Помилка: Очікували 'true', але отримали '{verification1}'"
-print("✅ ПЕРЕВІРКА УСПІШНА: Кнопка 'Список' активована")
+        assert page.click_list_view() == "true"
+        print("✅ Кнопка 'Список' працює")
 
+        assert page.click_gallery_view() == "true"
+        print("✅ Кнопка 'Сітка' працює")
 
-button = driver.find_element(By.XPATH, "//button[@class='gallery']")
-button.click()
-wait.until(lambda d: button.get_attribute("aria-pressed") == "true")
-
-verification2 = button.get_attribute("aria-pressed")
-assert verification2 == "true", f"Помилка: Очікували 'true', але отримали '{verification2}'"
-print("✅ ПЕРЕВІРКА УСПІШНА: Кнопка 'Cітка' активована")
-
-driver.quit()
+        driver.quit()
+        
+if __name__ == "__main__":
+    import unittest
+    unittest.main()
